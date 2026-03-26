@@ -45,4 +45,17 @@ public class Service: IService
         var result = await selectedQuery.ToListAsync();
         return result;
     }
+
+    public async Task<List<Response.CreateCategoryResponse>> GetAllChildrenByParentId(Guid parentId)
+    {
+        var query = _dbContext.Categories.Where(x => x.ParentId == parentId);
+        query = query.OrderBy(x => x.Name);
+        var selectedQuery = query.Select(x => new Response.CreateCategoryResponse()
+        {
+            Name = x.Name,
+            ParentId = x.ParentId
+        });
+        var result = await selectedQuery.ToListAsync();
+        return result;
+    }
 }

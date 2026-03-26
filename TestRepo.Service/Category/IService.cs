@@ -4,4 +4,5 @@ public interface IService
 {
     public Task<string> CreateCategory(Request.CreateCategoryRequest request);
     public Task<List<Response.CreateCategoryResponse>> GetAllChildren();
+    public Task<List<Response.CreateCategoryResponse>> GetAllChildrenByParentId(Guid parentId);
 }
